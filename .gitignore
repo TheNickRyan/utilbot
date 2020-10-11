@@ -102,4 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# VSCode workspace file
 utilbot.code-workspace
+
+# User-specific config.json file
+config.json
+
+# ES6 Linter
+.eslintrc.json
