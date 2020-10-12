@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/TheNickRyan/utilbot/issues"
   },
-  "homepage": "https://github.com/TheNickRyan/utilbot#readme"
+  "homepage": "https://github.com/TheNickRyan/utilbot#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "node-http-ping": "^0.3.1",
+    "node-url-shortener": "^1.1.11",
+    "tinyurl": "^1.1.7"
+  }
 }
