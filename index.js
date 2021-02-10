@@ -19,7 +19,7 @@ for (const file of commandFiles) {
 let urlExp = '(\?\:[a-zA-Z0-9]+\\.(\?\:';
 Object.values(domainWhitelist).forEach(domain => {
 	if (domain === '-') {
-		urlExp = new RegExp(`${urlExp}.xyz)\\S*)`);
+		urlExp = new RegExp(`${urlExp}xyz)\\S*)`);
 		return;
 	}
 	urlExp += `${domain}|`;
@@ -29,7 +29,7 @@ Object.values(domainWhitelist).forEach(domain => {
 client.on('ready', () => {
 
 	//log what servers the bot is on
-	console.log('UtiliT has been initialized.'); 
+	console.log('UtiliT has been initialized.');
 
 });
 

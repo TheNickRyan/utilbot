@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const http = require('http');
 const ping = require('node-http-ping');
 const urlShortener = require('node-url-shortener');
 
@@ -15,18 +16,19 @@ module.exports = {
 
 		//ping the url, set the message to the url or 404 is not found
 		await ping(fullUrl)
-		.then(urlShortener.short(fullUrl, (err, shortUrl) => { 
-			embed.setDescription(message.content.split(regex).join(shortUrl));
-			console.log(`Shortened ${message.author.username}\'s URL from ${fullUrl} to ${shortUrl}.`); 
+			.then( status => {
+				console.log(status);
+				urlShortener.short(fullUrl, (e, shortUrl) => {
+					embed.setDescription(message.content.split(regex).join(shortUrl));
+					console.log(`Shortened ${message.author.username}\'s URL from ${fullUrl} to ${shortUrl}.`);
 
-			//send the message with the shortened url/404 error
-			message.channel.send(embed)
-				.then(() => { 
-					message.delete();
-					console.log('URL function complete.'); 
-				})
-				.catch(e => console.error('Message failed to send.', e));
-		}))
-		.catch(() => { embed.setDescription('ERROR 404\: Server not found.') });
+					//send the message with the shortened url/404 error
+					console.log('URL function complete.');
+					message.channel.send(embed)
+						.then(() => message.delete())
+						.catch(e => console.error('Message failed to send.', e));
+				});
+			}, e => { console.log('Failed to ping.', e); return; })
+		.catch(() => embed.setDescription('ERROR 404\: Server not found.'));
 	}
 };
